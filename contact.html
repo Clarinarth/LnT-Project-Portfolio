@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <section>
+    <div class="burger" onclick='burgerMenu();'></div>
+    <div class="header">
+        <ul class="nav animSlideInR">
+           <a href="main.html">Home</a>
+           <a href="aboutMe.html">About Me</a> 
+           <a href="main.html"><img id="logo" src="images/logo.png"> </a>
+           <a href="portofolio.html">Portofolio</a>
+           <a href="contact.html">Contact</a>
+        </ul>
+    </div>
+  
+    <video autoplay loop muted src="videos/asteroid.mp4"></video>
+    <div class="animFadeInUp">
+    <h2>Contact</h2>
+    <form method="POST">  
+        <div class="inputBox">
+            <label for="firstname">First Name :  </label><input type="text" name="firstname" id="firstname" placeholder="Input your first name" autocomplete="off" onkeyup="validateFirstName()" required> 
+            <span id="FirstN-Error"></span>
+
+            <br>    
+
+            <label for="lastname">Last Name :  </label><input type="text" name="lastname" id="lastname" placeholder="Input your last name" autocomplete="off" onkeyup="validateLastName()" required> 
+            <span id="LastN-Error"></span>
+
+            <br>
+
+            <label for="email"> Email :  </label><input type="text" name="email" id="email" placeholder="Input your email" autocomplete="off" onkeyup="validateEmail()" required> 
+            <span id="Email-Error"></span>
+
+            <br>
+
+            <label> Comment :  </label><input type="text" name="comment" id="comment" placeholder="Give Your Comment About Me" autocomplete="off" onkeyup="validateComment()" required> 
+            <span id="Comment-Error"></span>
+
+            <br>
+
+        </div> 
+        <br>
+       
+        <input  type="button" id="btn" value="Submit" onclick="">
+    
+    </form>
+    </div>
+    </section>
+
+</body>
+<script>
+     function burgerMenu(){
+      var burgerMenu = document.querySelector('.burger');
+      var nav= document.querySelector('.nav');
+      burgerMenu.classList.toggle('active'); 
+      nav.classList.toggle('active'); 
+   }
+
+//Formulir
+var FnameError = document.getElementById('FirstN-Error');
+var LnameError = document.getElementById('LastN-Error');
+var EmailError = document.getElementById('Email-Error');
+var CommentError = document.getElementById('Comment-Error');
+
+function validateFirstName(){
+    var firstN = document.getElementById('firstname').value;
+    if(firstN.length < 1){
+        FnameError.innerHTML = 'First name must be filled';
+        return 0;
+    }
+    FnameError.innerHTML = '<i class="fa-solid fa-circle-check">  Valid</i>';
+    return 1;
+}
+
+function validateLastName(){
+    var lastN = document.getElementById('lastname').value;
+    if(lastN.length < 1){
+        LnameError.innerHTML = 'Last name must be filled';
+        return 0;
+    }
+    LnameError.innerHTML = '<i class="fa-solid fa-circle-check">  Valid</i>';
+    return 1;
+}
+
+function validateEmail(){
+    var emailValue = document.getElementById('email').value;
+
+    if(emailValue.length < 1){
+        EmailError.innerHTML = 'Email must be filled';
+        return 0;
+    }
+    if(!emailValue.endsWith("@gmail.com") && !emailValue.endsWith("@yahoo.com")){
+        EmailError.innerHTML = 'Email must be @gmail.com or @yahoo.com';
+        return 0;
+    }
+    EmailError.innerHTML = '<i class="fa-solid fa-circle-check">  Valid</i>';
+    return 1;
+}
+
+function validateComment(){
+    var comment = document.getElementById('comment').value;
+    var checkWord = 15;
+ 
+    var commLength = checkWord - comment.length;
+    
+    if(comment.length <  15){
+        CommentError.innerHTML =  commLength + " more characters to continue";
+        return 0;
+    }
+    CommentError.innerHTML = '<i class="fa-solid fa-circle-check">  Valid</i>';
+    return 1;
+}
+
+let btn = document.getElementById('btn');
+
+btn.addEventListener('click',function(e){
+    e.preventDefault();
+    alert("Check all answer!!");
+})
+
+ </script> 
+</html>
